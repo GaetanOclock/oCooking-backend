@@ -1,0 +1,17 @@
+{
+    "name": "oclock/ocooking",
+    "description": "Plugin WordPress pour le projet 10 min o'Four",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "oCooking\\": "."
+        }
+    },
+    "authors": [
+        {
+            "name": "GaetanOclock",
+            "email": "gaetan@oclock.io"
+        }
+    ],
+    "require": {}
+}
