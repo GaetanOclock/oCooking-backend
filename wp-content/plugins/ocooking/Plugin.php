@@ -6,6 +6,7 @@ use oCooking\PostType\RecipePostType;
 use oCooking\Role\ChefRole;
 use oCooking\Taxonomy\IngredientTaxonomy;
 use oCooking\Taxonomy\RecipeTypeTaxonomy;
+use oCooking\User\Register;
 
 class Plugin {
     /**
@@ -30,6 +31,13 @@ class Plugin {
 
         // à l'init de l'api REST
         add_action( 'rest_api_init', [self::class, 'onRestInit']);
+
+        add_action( 'rest_api_init', function () {
+  register_rest_route( 'myplugin/v1', '/author/(?P<id>\d+)', array(
+    'methods' => 'GET',
+    'callback' => 'my_awesome_func',
+  ) );
+} );
     }
 
     /**
@@ -52,6 +60,7 @@ class Plugin {
     {
         remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
         add_filter( 'rest_pre_serve_request', [self::class, 'setupCors']);
+        Register::initRoute();
     }
 
     static public function setupCors()
